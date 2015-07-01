@@ -12,3 +12,37 @@ en gang.
 Altså et traveling salesmanproblem, hvor man
  * ikke har en begrænsning på kun at besøge hver by en gang.
  * skal tage højde for ventetider mellem togene
+
+
+Eksempel på data kan findes [her](data/tog.csv), hvilket er
+oplysninger fra de hvide køretider hentet 1. juli 2015. Bemærk, at
+linje Bx ikke er med i de pågældende data
+
+
+```R
+# Read data
+indata <- read.csv2("data/tog.csv", header=FALSE, col.names=c("station",
+"tid"), as.is=TRUE)
+
+# Simple data fixing
+convertData <- function(o) {
+no <- NROW(o)
+difft <- diff(o$tid)
+    difft[!is.na(difft) & difft<0] <- difft[!is.na(difft) & difft<0] + 60
+	    res <- data.frame(from=o$station[-no], to=o$station[-1],
+		tid=difft, weight=difft)
+		res[!is.na(res$tid),]
+		}
+
+tog <- convertData(indata)
+
+
+library(igraph)
+
+
+
+network<- graph.data.frame(tog, directed=F)
+neighbormatrix <- as.matrix(get.adjacency(network))
+distancematrix <- shortest.paths(network)
+
+```
