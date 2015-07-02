@@ -39,10 +39,18 @@ tog <- convertData(indata)
 
 library(igraph)
 
+# This object contains a graph data frame with the columns
+# from, to, dist and weight. Dist and weight are identical
+# And refer to the distance (in minutes) between neighboring stations
+network <- graph.data.frame(tog, directed=FALSE)
 
-
-network<- graph.data.frame(tog, directed=F)
+# This matrix contains an 84x84 matrix of neighboring stations
 neighbormatrix <- as.matrix(get.adjacency(network))
+
+# And this matrix contains minimum dtstance (in minutes) between
+# all pairs of stations
 distancematrix <- shortest.paths(network)
 
 ```
+
+<img src="pics/graph.svg">
