@@ -1,4 +1,4 @@
-# TheChallenge
+# The Challenge
 
 ## Mål
 Man skal - kun ved hjælp af transport med S-tog i hovedstadsområdet - se, hvor hurtig man
