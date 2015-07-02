@@ -53,4 +53,4 @@ distancematrix <- shortest.paths(network)
 
 ```
 
-![Network graph]("https://cdn.rawgit.com/ekstroem/TheChallenge/master/pics/graph.svg")
+![Network graph](https://cdn.rawgit.com/ekstroem/TheChallenge/master/pics/graph.svg)
