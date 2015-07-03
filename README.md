@@ -16,23 +16,21 @@ Altså et traveling salesmanproblem, hvor man
 
 Eksempel på data kan findes [her](data/tog.csv), hvilket er
 oplysninger fra de hvide køretider hentet 1. juli 2015. Bemærk, at
-linje Bx ikke er med i de pågældende data
+linje Bx ikke er med i de pågældende data, men den kan tilføjes.
 
 
 ```R
 # Read data
-indata <- read.csv2("data/tog.csv", header=FALSE, col.names=c("station",
-"tid"), as.is=TRUE)
+indata <- read.csv2("data/tog.csv", header=FALSE, col.names=c("station", "tid"), as.is=TRUE)
 
 # Simple data fixing
 convertData <- function(o) {
 no <- NROW(o)
 difft <- diff(o$tid)
     difft[!is.na(difft) & difft<0] <- difft[!is.na(difft) & difft<0] + 60
-	    res <- data.frame(from=o$station[-no], to=o$station[-1],
-		tid=difft, weight=difft)
+	    res <- data.frame(from=o$station[-no], to=o$station[-1], tid=difft, weight=difft, stringsAsFactors=FALSE)
 		res[!is.na(res$tid),]
-		}
+}
 
 tog <- convertData(indata)
 
@@ -47,7 +45,7 @@ network <- graph.data.frame(tog, directed=FALSE)
 # This matrix contains an 84x84 matrix of neighboring stations
 neighbormatrix <- as.matrix(get.adjacency(network))
 
-# And this matrix contains minimum dtstance (in minutes) between
+# And this matrix contains minimum distance (in minutes) between
 # all pairs of stations
 distancematrix <- shortest.paths(network)
 
