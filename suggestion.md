@@ -3,7 +3,8 @@
 
 | Fra | Til |
 |--- |--- |
-|Køge  |  Sydhavn|
+|Køge  |  Ishøj|
+|Ishøj  |  Sydhavn|
 |Sydhavn  |  Ny Ellebjerg|
 |Ny Ellebjerg  |  Danshøj|
 |Danshøj  |  Høje Tåstrup |
